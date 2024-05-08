@@ -3,9 +3,10 @@ package scanner;
 import java.io.*;
 import java.util.HashSet;
 import java.util.Set;
+import scanner.Token.TokenType;
 
 /**
- * Scanner is a simple scanner for Compilers and Interpreters (2014-2015) lab exercise 1
+ * Scanner is a simple scanner for Compilers and Interpreters (2024) lab exercise 1
  *
  * @author Agastya Ravuri
  * @version 1.22.2024
@@ -15,7 +16,7 @@ import java.util.Set;
  */
 public class Scanner
 {
-    private BufferedReader in;
+    private final BufferedReader in;
     private char currentChar;
     private boolean eof;
 
@@ -39,7 +40,9 @@ public class Scanner
             ">=",
             "<>",
             ":=",
-            ";"
+            ";",
+            ",",
+            "."
     );
 
     /**
@@ -65,7 +68,7 @@ public class Scanner
 
     /**
      * Scanner constructor for constructing a scanner that
-     * scans a given input string.  It sets the end-of-file flag an then reads
+     * scans a given input string.  It sets the end-of-file flag and then reads
      * the first character of the input string into the instance field currentChar.
      * Usage: Scanner lex = new Scanner(input_string);
      *
@@ -88,10 +91,10 @@ public class Scanner
         try
         {
             int c = in.read();
-            if (c == -1 || c == '.')
+            if (c == -1 || c == '$')
             {
                 eof = true;
-                currentChar = '.';
+                currentChar = '$';
                 return;
             }
             currentChar = (char) c;
@@ -100,10 +103,6 @@ public class Scanner
         {
             e.printStackTrace();
             System.exit(1);
-        }
-        finally
-        {
-
         }
     }
 

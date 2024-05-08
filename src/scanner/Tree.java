@@ -20,7 +20,7 @@ public class Tree<E>
      * @param value the value stored in the tree
      * @param subtrees a set of all subtrees of the tree
      */
-    public Tree(E value, Set<Tree<E>> subtrees)
+    public Tree(E value, Collection<Tree<E>> subtrees)
     {
         this.value = value;
         this.subtrees = subtrees == null ? null :

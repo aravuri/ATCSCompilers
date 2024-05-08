@@ -1,6 +1,8 @@
 package scanner;
 
 import java.io.*;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  * Tests the Scanner class.
@@ -17,14 +19,15 @@ public class ScannerTester
      * @throws FileNotFoundException when the file is not found
      * @throws ScanErrorException when there is a scanning error
      */
-    public static void main(String[] args) throws FileNotFoundException, ScanErrorException
+    public static void main(String[] args) throws IOException, ScanErrorException
     {
-        Scanner sc = new Scanner(new FileInputStream("scannerTestAdvanced.txt"));
+        Scanner sc = new Scanner(new FileInputStream("ScannerTest.txt"));
 
+        System.out.println("ScannerTest.txt:");
         while (sc.hasNext())
         {
-            System.out.println(sc.nextToken());
+            Token token = sc.nextToken();
+            System.out.println(token);
         }
-
     }
 }

@@ -3,11 +3,8 @@ package scanner;
 /**
  * An enum, containing all possible token types.
  */
-enum TokenType
-{
-    IDENTIFIER, NUMBER, OPERATOR, EOF
-}
 
+import java.util.Objects;
 
 /**
  * Represents a token that will be scanned by a Scanner.
@@ -17,19 +14,33 @@ enum TokenType
  */
 public class Token
 {
+    public enum TokenType
+    {
+        IDENTIFIER, NUMBER, OPERATOR, EOF
+    }
 
     private final TokenType type;
 
     private final String value;
 
     /**
-     * Contructs a Token
+     * Contructs a token
      * @param type the type of the token
      * @param value the value of the token
      */
     public Token(TokenType type, String value)
     {
         this.type = type;
+        this.value = value;
+    }
+
+    /**
+     * Constructs an unassociated token
+     * @param value the value of the token
+     */
+    public Token(String value)
+    {
+        this.type = null;
         this.value = value;
     }
 
@@ -59,6 +70,21 @@ public class Token
     public String toString()
     {
         return "{" + value + ", type: " + type + "}";
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Token token = (Token) o;
+        return (type == null || token.type == null || type == token.type) && Objects.equals(value, token.value);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(type, value);
     }
 }
 

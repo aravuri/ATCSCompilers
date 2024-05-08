@@ -1,0 +1,13 @@
+PROCEDURE fact(n);
+BEGIN
+    IF n = 0 THEN
+        fact := 1;
+    ELSE
+        fact := fact(n - 1) * n;
+
+    WRITELN(fact);
+END;
+
+BEGIN
+    fact(10);
+END;
